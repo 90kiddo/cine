@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CineVerse – Stream Movies</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════
+     NAVBAR
+══════════════════════════════════════ -->
+<nav id="navbar">
+  <a class="nav-logo" href="#">CINE<span>VERSE</span></a>
+
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#" class="active">Home</a></li>
+    <li><a href="#">Movies</a></li>
+    <li><a href="#">Series</a></li>
+    <li><a href="#">Originals</a></li>
+    <li><a href="#">Trending</a></li>
+    <li><a href="#">Watchlist</a></li>
+  </ul>
+
+  <div class="nav-right">
+    <div class="search-box" id="searchBox">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
+      </svg>
+      <input type="text" placeholder="Search movies..." id="searchInput"/>
+    </div>
+    <button class="btn-signup">Sign Up</button>
+    <img class="avatar" src="https://images.pexels.com/photos/1036623/pexels-photo-1036623.jpeg?w=80" alt="avatar"/>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile menu overlay -->
+<div class="mobile-menu" id="mobileMenu">
+  <ul>
+    <li><a href="#" onclick="closeMobileMenu()">Home</a></li>
+    <li><a href="#" onclick="closeMobileMenu()">Movies</a></li>
+    <li><a href="#" onclick="closeMobileMenu()">Series</a></li>
+    <li><a href="#" onclick="closeMobileMenu()">Originals</a></li>
+    <li><a href="#" onclick="closeMobileMenu()">Trending</a></li>
+    <li><a href="#" onclick="closeMobileMenu()">Watchlist</a></li>
+  </ul>
+  <button class="mobile-close" onclick="closeMobileMenu()">✕ Close</button>
+</div>
+
+<!-- ══════════════════════════════════════
+     HERO BANNER
+══════════════════════════════════════ -->
+<div class="hero" id="heroSection">
+  <div class="hero-slides" id="heroSlides">
+
+    <div class="hero-slide active">
+      <!-- Dramatic mountain + fire sky -->
+      <img
+        src="https://images.pexels.com/photos/1252500/pexels-photo-1252500.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop"
+        alt="The Last Horizon"/>
+      <div class="hero-gradient"></div>
+    </div>
+
+    <div class="hero-slide">
+      <!-- Dark rainy city streets -->
+      <img
+        src="https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop"
+        alt="Iron Veil"/>
+      <div class="hero-gradient"></div>
+    </div>
+
+    <div class="hero-slide">
+      <!-- Deep space nebula / cosmos -->
+      <img
+        src="https://images.pexels.com/photos/1624496/pexels-photo-1624496.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop"
+        alt="Neon Requiem"/>
+      <div class="hero-gradient"></div>
+    </div>
+
+  </div>
+
+  <div class="hero-content" id="heroContent">
+    <div class="hero-badge">Now Streaming</div>
+    <h1 class="hero-title" id="heroTitle">THE <em>LAST</em><br>HORIZON</h1>
+    <div class="hero-meta">
+      <span class="rating">★ 9.1</span>
+      <span class="dot">●</span>
+      <span>2024</span>
+      <span class="dot">●</span>
+      <span>2h 18m</span>
+      <span class="dot">●</span>
+      <span>Action · Sci-Fi</span>
+    </div>
+    <p class="hero-desc" id="heroDesc">A lone astronaut stranded beyond known space must forge an unlikely alliance with a rogue AI to find her way home — before time runs out for both worlds.</p>
+    <div class="hero-actions">
+      <button class="btn-play">
+        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        Play Now
+      </button>
+      <button class="btn-info">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+        </svg>
+        More Info
+      </button>
+    </div>
+  </div>
+
+  <div class="hero-dots" id="heroDots">
+    <div class="hero-dot active" onclick="goSlide(0)"></div>
+    <div class="hero-dot" onclick="goSlide(1)"></div>
+    <div class="hero-dot" onclick="goSlide(2)"></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     GENRE PILLS
+══════════════════════════════════════ -->
+<div class="genre-strip">
+  <div class="genre-pill active" onclick="setGenre(this)">All</div>
+  <div class="genre-pill" onclick="setGenre(this)">Action</div>
+  <div class="genre-pill" onclick="setGenre(this)">Drama</div>
+  <div class="genre-pill" onclick="setGenre(this)">Sci-Fi</div>
+  <div class="genre-pill" onclick="setGenre(this)">Thriller</div>
+  <div class="genre-pill" onclick="setGenre(this)">Comedy</div>
+  <div class="genre-pill" onclick="setGenre(this)">Romance</div>
+  <div class="genre-pill" onclick="setGenre(this)">Horror</div>
+  <div class="genre-pill" onclick="setGenre(this)">Animation</div>
+  <div class="genre-pill" onclick="setGenre(this)">Documentary</div>
+</div>
+
+<!-- ══════════════════════════════════════
+     TRENDING NOW
+══════════════════════════════════════ -->
+<section class="section" data-section>
+  <div class="section-header">
+    <div class="section-title">🔥 Trending Now</div>
+    <a href="#" class="see-all">See all →</a>
+  </div>
+  <div class="row-wrapper">
+    <button class="row-arrow left" onclick="scrollRow(this,-1)">&#8249;</button>
+    <div class="row" id="row-trending"></div>
+    <button class="row-arrow right" onclick="scrollRow(this,1)">&#8250;</button>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     FEATURED ORIGINALS BANNER
+══════════════════════════════════════ -->
+<div class="featured-banner section" data-section>
+  <img
+    src="https://images.pexels.com/photos/3062541/pexels-photo-3062541.jpeg?auto=compress&cs=tinysrgb&w=1400"
+    alt="CineVerse Originals"/>
+  <div class="featured-banner-content">
+    <div class="featured-banner-text">
+      <div class="fb-label">CINEVERSE ORIGINALS</div>
+      <h2>Stories Only<br>We Tell</h2>
+      <p>Exclusive films and series you won't find anywhere else — award-winning stories crafted by world-class creators.</p>
+      <button class="btn-play" style="font-size:14px;padding:10px 22px;">Explore Originals</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     NEW RELEASES
+══════════════════════════════════════ -->
+<section class="section" data-section>
+  <div class="section-header">
+    <div class="section-title">🆕 New Releases</div>
+    <a href="#" class="see-all">See all →</a>
+  </div>
+  <div class="row-wrapper">
+    <button class="row-arrow left" onclick="scrollRow(this,-1)">&#8249;</button>
+    <div class="row" id="row-new"></div>
+    <button class="row-arrow right" onclick="scrollRow(this,1)">&#8250;</button>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     TOP RATED
+══════════════════════════════════════ -->
+<section class="section" data-section>
+  <div class="section-header">
+    <div class="section-title">⭐ Top Rated</div>
+    <a href="#" class="see-all">See all →</a>
+  </div>
+  <div class="row-wrapper">
+    <button class="row-arrow left" onclick="scrollRow(this,-1)">&#8249;</button>
+    <div class="row" id="row-top"></div>
+    <button class="row-arrow right" onclick="scrollRow(this,1)">&#8250;</button>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     CONTINUE WATCHING
+══════════════════════════════════════ -->
+<section class="section" data-section>
+  <div class="section-header">
+    <div class="section-title">🎬 Continue Watching</div>
+    <a href="#" class="see-all">See all →</a>
+  </div>
+  <div class="row-wrapper">
+    <button class="row-arrow left" onclick="scrollRow(this,-1)">&#8249;</button>
+    <div class="row" id="row-continue"></div>
+    <button class="row-arrow right" onclick="scrollRow(this,1)">&#8250;</button>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     BROWSE BY GENRE
+══════════════════════════════════════ -->
+<section class="section" data-section>
+  <div class="section-header">
+    <div class="section-title">🎭 Browse by Genre</div>
+  </div>
+  <div class="categories-grid" id="catGrid"></div>
+</section>
+
+<!-- ══════════════════════════════════════
+     FOOTER
+══════════════════════════════════════ -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-logo">CINE<span>VERSE</span></div>
+    <p class="footer-tagline">Cinema without borders. Stream anytime, anywhere.</p>
+    <div class="footer-social">
+      <a href="#" aria-label="Twitter">𝕏</a>
+      <a href="#" aria-label="Instagram">IG</a>
+      <a href="#" aria-label="YouTube">YT</a>
+      <a href="#" aria-label="Facebook">FB</a>
+    </div>
+  </div>
+  <div class="footer-divider"></div>
+  <div class="footer-bottom">
+    <ul class="footer-links">
+      <li><a href="#">About</a></li>
+      <li><a href="#">Privacy Policy</a></li>
+      <li><a href="#">Terms of Use</a></li>
+      <li><a href="#">Help Center</a></li>
+      <li><a href="#">Careers</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+    <div class="footer-copy">© 2024 CineVerse Inc. All rights reserved.</div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
