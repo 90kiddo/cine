@@ -250,5 +250,52 @@
 </footer>
 
 <script src="script.js"></script>
+
+
+<script>
+// ── HERO BANNER AUTO SLIDER ──
+var hi = 0;  // current hero index (0, 1, 2)
+
+var HT = ["THE <em>LAST</em><br>HORIZON", "IRON <em>VEIL</em>", "NEON <em>REQUIEM</em>"];
+var HD = [
+  "A lone astronaut stranded beyond known space must forge an unlikely alliance with a rogue AI to find her way home.",
+  "An ex-soldier uncovers a government conspiracy that blurs the line between friend and foe in a city on the brink of revolution.",
+  "In the rain-soaked streets of 2147, a jazz musician holds the key to stopping a synthetic plague — if he survives the night."
+];
+
+function showHeroSlide(n) {
+  var slides = document.querySelectorAll('.hero-slide');
+  var dots   = document.querySelectorAll('.hero-dot');
+
+  // remove active from current
+  slides[hi].classList.remove('active');
+  dots[hi].classList.remove('active');
+
+  // update index — wrap 0-1-2-0-1-2
+  hi = n % 3;
+
+  // add active to new
+  slides[hi].classList.add('active');
+  dots[hi].classList.add('active');
+
+  // swap text
+  var t = document.getElementById('heroTitle');
+  var d = document.getElementById('heroDesc');
+  t.style.opacity = '0';
+  d.style.opacity = '0';
+  setTimeout(function() {
+    t.innerHTML   = HT[hi];
+    d.textContent = HD[hi];
+    t.style.opacity = '1';
+    d.style.opacity = '1';
+  }, 250);
+}
+
+// dot clicks
+window.goSlide = function(n) { showHeroSlide(n); };
+
+// auto advance — every 3s, hi goes 0→1→2→0→1→2
+setInterval(function() { showHeroSlide(hi + 1); }, 3000);
+</script>
 </body>
 </html>

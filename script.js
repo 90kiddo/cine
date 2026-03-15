@@ -134,89 +134,6 @@ function renderRows() {
 }
 
 
-/* ==============================================
-   HERO BANNER SLIDER
-   - Auto-advances every 5.5 s
-   - Smooth opacity fade + title cross-dissolve
-   - Pauses on hover and touch
-=============================================== */
-let currentSlide = 0;
-let heroTimer    = null;
-
-function goSlide(n) {
-  const slides = qa('.hero-slide');
-  const dots   = qa('.hero-dot');
-  const total  = slides.length;
-
-  slides[currentSlide].classList.remove('active');
-  dots[currentSlide].classList.remove('active');
-  currentSlide = ((n % total) + total) % total;
-  slides[currentSlide].classList.add('active');
-  dots[currentSlide].classList.add('active');
-
-  // Restart Ken-Burns zoom on the incoming slide's image
-  const img = slides[currentSlide].querySelector('img');
-  img.style.animation = 'none';
-  void img.offsetHeight; // force reflow
-  img.style.animation = '';
-
-  // Fade-swap the text
-  const titleEl = qs('#heroTitle');
-  const descEl  = qs('#heroDesc');
-  titleEl.style.opacity = '0';
-  descEl.style.opacity  = '0';
-  setTimeout(() => {
-    titleEl.innerHTML  = heroData[currentSlide].title;
-    descEl.textContent = heroData[currentSlide].desc;
-    titleEl.style.opacity = '1';
-    descEl.style.opacity  = '1';
-  }, 220);
-}
-
-function startHeroAuto() {
-  stopHeroAuto();
-  heroTimer = setInterval(() => goSlide(currentSlide + 1), 3000);
-}
-function stopHeroAuto() {
-  if (heroTimer) { clearInterval(heroTimer); heroTimer = null; }
-}
-
-function initHero() {
-  // Set up text transitions
-  ['#heroTitle', '#heroDesc'].forEach(sel => {
-    const el = qs(sel);
-    if (el) el.style.transition = 'opacity 0.28s ease';
-  });
-
-  const heroEl = qs('.hero');
-  if (!heroEl) return;
-
-  // Pause on hover, resume on leave
-  heroEl.addEventListener('mouseenter', stopHeroAuto);
-  heroEl.addEventListener('mouseleave', startHeroAuto);
-
-  // Touch swipe support
-  let touchX = 0;
-  heroEl.addEventListener('touchstart', e => {
-    touchX = e.touches[0].clientX;
-    stopHeroAuto();
-  }, { passive: true });
-  heroEl.addEventListener('touchend', e => {
-    const diff = touchX - e.changedTouches[0].clientX;
-    if (Math.abs(diff) > 50) goSlide(currentSlide + (diff > 0 ? 1 : -1));
-    startHeroAuto();
-  }, { passive: true });
-
-  setTimeout(startHeroAuto, 800);
-}
-
-// Expose for HTML dot onclick attributes
-// Clicking a dot manually resets the auto-timer
-window.goSlide = function(n) {
-  goSlide(n);
-  startHeroAuto();
-};
-
 
 /* ==============================================
    ROW AUTO-SCROLL  — one card at a time
@@ -391,7 +308,6 @@ function initReveal() {
 =============================================== */
 document.addEventListener('DOMContentLoaded', () => {
   renderRows();          // build all card rows
-  initHero();            // hero banner auto-slide
   initNavbar();          // scroll-aware navbar
   initMobileMenu();      // hamburger menu
   initReveal();          // fade-in on scroll
