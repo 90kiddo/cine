@@ -9,9 +9,7 @@
 </head>
 <body>
 
-<!-- ══════════════════════════════════════
-     NAVBAR
-══════════════════════════════════════ -->
+
 <nav id="navbar">
   <a class="nav-logo" href="#">CINE<span>VERSE</span></a>
 
@@ -39,7 +37,7 @@
   </div>
 </nav>
 
-<!-- Mobile menu overlay -->
+
 <div class="mobile-menu" id="mobileMenu">
   <ul>
     <li><a href="#" onclick="closeMobileMenu()">Home</a></li>
@@ -52,14 +50,12 @@
   <button class="mobile-close" onclick="closeMobileMenu()">✕ Close</button>
 </div>
 
-<!-- ══════════════════════════════════════
-     HERO BANNER
-══════════════════════════════════════ -->
+
 <div class="hero" id="heroSection">
   <div class="hero-slides" id="heroSlides">
 
     <div class="hero-slide active">
-      <!-- Dramatic mountain + fire sky -->
+    
       <img
         src="https://images.pexels.com/photos/1252500/pexels-photo-1252500.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop"
         alt="The Last Horizon"/>
@@ -67,7 +63,7 @@
     </div>
 
     <div class="hero-slide">
-      <!-- Dark rainy city streets -->
+     
       <img
         src="https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop"
         alt="Iron Veil"/>
@@ -75,7 +71,7 @@
     </div>
 
     <div class="hero-slide">
-      <!-- Deep space nebula / cosmos -->
+      
       <img
         src="https://images.pexels.com/photos/1624496/pexels-photo-1624496.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop"
         alt="Neon Requiem"/>
@@ -118,9 +114,7 @@
   </div>
 </div>
 
-<!-- ══════════════════════════════════════
-     GENRE PILLS
-══════════════════════════════════════ -->
+
 <div class="genre-strip">
   <div class="genre-pill active" onclick="setGenre(this)">All</div>
   <div class="genre-pill" onclick="setGenre(this)">Action</div>
@@ -134,9 +128,7 @@
   <div class="genre-pill" onclick="setGenre(this)">Documentary</div>
 </div>
 
-<!-- ══════════════════════════════════════
-     TRENDING NOW
-══════════════════════════════════════ -->
+
 <section class="section" data-section>
   <div class="section-header">
     <div class="section-title">🔥 Trending Now</div>
@@ -149,9 +141,7 @@
   </div>
 </section>
 
-<!-- ══════════════════════════════════════
-     FEATURED ORIGINALS BANNER
-══════════════════════════════════════ -->
+
 <div class="featured-banner section" data-section>
   <img
     src="https://images.pexels.com/photos/3062541/pexels-photo-3062541.jpeg?auto=compress&cs=tinysrgb&w=1400"
@@ -166,9 +156,7 @@
   </div>
 </div>
 
-<!-- ══════════════════════════════════════
-     NEW RELEASES
-══════════════════════════════════════ -->
+
 <section class="section" data-section>
   <div class="section-header">
     <div class="section-title">🆕 New Releases</div>
@@ -181,9 +169,7 @@
   </div>
 </section>
 
-<!-- ══════════════════════════════════════
-     TOP RATED
-══════════════════════════════════════ -->
+
 <section class="section" data-section>
   <div class="section-header">
     <div class="section-title">⭐ Top Rated</div>
@@ -196,9 +182,7 @@
   </div>
 </section>
 
-<!-- ══════════════════════════════════════
-     CONTINUE WATCHING
-══════════════════════════════════════ -->
+
 <section class="section" data-section>
   <div class="section-header">
     <div class="section-title">🎬 Continue Watching</div>
@@ -211,9 +195,7 @@
   </div>
 </section>
 
-<!-- ══════════════════════════════════════
-     BROWSE BY GENRE
-══════════════════════════════════════ -->
+
 <section class="section" data-section>
   <div class="section-header">
     <div class="section-title">🎭 Browse by Genre</div>
@@ -221,9 +203,7 @@
   <div class="categories-grid" id="catGrid"></div>
 </section>
 
-<!-- ══════════════════════════════════════
-     FOOTER
-══════════════════════════════════════ -->
+
 <footer>
   <div class="footer-top">
     <div class="footer-logo">CINE<span>VERSE</span></div>
@@ -253,8 +233,8 @@
 
 
 <script>
-// ── HERO BANNER AUTO SLIDER ──
-var hi = 0;  // current hero index (0, 1, 2)
+
+var hi = 0;  
 
 var HT = ["THE <em>LAST</em><br>HORIZON", "IRON <em>VEIL</em>", "NEON <em>REQUIEM</em>"];
 var HD = [
@@ -267,18 +247,18 @@ function showHeroSlide(n) {
   var slides = document.querySelectorAll('.hero-slide');
   var dots   = document.querySelectorAll('.hero-dot');
 
-  // remove active from current
+
   slides[hi].classList.remove('active');
   dots[hi].classList.remove('active');
 
-  // update index — wrap 0-1-2-0-1-2
+ 
   hi = n % 3;
 
-  // add active to new
+ 
   slides[hi].classList.add('active');
   dots[hi].classList.add('active');
 
-  // swap text
+  
   var t = document.getElementById('heroTitle');
   var d = document.getElementById('heroDesc');
   t.style.opacity = '0';
@@ -291,10 +271,10 @@ function showHeroSlide(n) {
   }, 250);
 }
 
-// dot clicks
+
 window.goSlide = function(n) { showHeroSlide(n); };
 
-// auto advance — every 3s, hi goes 0→1→2→0→1→2
+
 setInterval(function() { showHeroSlide(hi + 1); }, 3000);
 </script>
 </body>

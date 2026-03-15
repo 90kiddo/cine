@@ -1,9 +1,4 @@
-/* ══════════════════════════════════════════════════
-   CINEVERSE — style.css
-   Full responsive design: Desktop → Tablet → Mobile
-══════════════════════════════════════════════════ */
 
-/* ── CSS VARIABLES ── */
 :root {
   --bg:       #07090f;
   --surface:  #0e1219;
@@ -19,7 +14,7 @@
   --pad:      40px;
 }
 
-/* ── RESET ── */
+
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -37,15 +32,13 @@ img { display: block; }
 a { text-decoration: none; }
 button { font-family: 'DM Sans', sans-serif; }
 
-/* scrollbar */
+
 ::-webkit-scrollbar { width: 5px; height: 4px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
 ::-webkit-scrollbar-thumb { background: var(--surface2); border-radius: 99px; }
 
 
-/* ════════════════════════════════════════
-   NAVBAR
-════════════════════════════════════════ */
+
 nav {
   position: fixed;
   top: 0; left: 0; right: 0;
@@ -65,7 +58,7 @@ nav.scrolled {
   border-bottom: 1px solid rgba(255,255,255,0.05);
 }
 
-/* Logo */
+
 .nav-logo {
   font-family: 'Bebas Neue', sans-serif;
   font-size: 28px;
@@ -78,7 +71,7 @@ nav.scrolled {
 }
 .nav-logo span { color: var(--accent2); }
 
-/* Links */
+
 .nav-links {
   display: flex;
   gap: 28px;
@@ -99,7 +92,7 @@ nav.scrolled {
   padding-bottom: 2px;
 }
 
-/* Right side */
+
 .nav-right {
   display: flex;
   align-items: center;
@@ -153,7 +146,7 @@ nav.scrolled {
   flex-shrink: 0;
 }
 
-/* Hamburger */
+
 .hamburger {
   display: none;
   flex-direction: column;
@@ -176,7 +169,7 @@ nav.scrolled {
 .hamburger.open span:nth-child(2) { opacity: 0; }
 .hamburger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
-/* Mobile menu */
+
 .mobile-menu {
   display: none;
   position: fixed;
@@ -227,9 +220,7 @@ nav.scrolled {
 .mobile-close:hover { border-color: var(--accent2); color: var(--accent2); }
 
 
-/* ════════════════════════════════════════
-   HERO
-════════════════════════════════════════ */
+
 .hero {
   position: relative;
   height: 96vh;
@@ -380,7 +371,7 @@ nav.scrolled {
 }
 .btn-info:hover { background: rgba(255,255,255,0.18); }
 
-/* Hero dots */
+
 .hero-dots {
   position: absolute;
   bottom: 36px;
@@ -402,9 +393,7 @@ nav.scrolled {
 }
 
 
-/* ════════════════════════════════════════
-   GENRE STRIP
-════════════════════════════════════════ */
+
 .genre-strip {
   padding: 28px var(--pad) 20px;
   display: flex;
@@ -440,9 +429,7 @@ nav.scrolled {
 }
 
 
-/* ════════════════════════════════════════
-   SECTIONS
-════════════════════════════════════════ */
+
 .section {
   padding: 12px 0 38px;
   opacity: 0;
@@ -486,9 +473,7 @@ nav.scrolled {
 .see-all:hover { opacity: 1; }
 
 
-/* ════════════════════════════════════════
-   ROW
-════════════════════════════════════════ */
+
 .row-wrapper { position: relative; }
 
 .row {
@@ -536,9 +521,7 @@ nav.scrolled {
 .row-arrow.right { right: 6px; }
 
 
-/* ════════════════════════════════════════
-   CARD (portrait)
-════════════════════════════════════════ */
+
 .card {
   flex-shrink: 0;
   width: var(--card-w);
@@ -620,16 +603,14 @@ nav.scrolled {
 }
 .card-sub { font-size: 11px; color: var(--muted); }
 
-/* Wide card (landscape) */
+
 .card.wide {
   --card-w: 264px;
   --card-h: 152px;
 }
 
 
-/* ════════════════════════════════════════
-   FEATURED BANNER
-════════════════════════════════════════ */
+
 .featured-banner {
   margin: 4px var(--pad) 38px;
   border-radius: 16px;
@@ -679,9 +660,7 @@ nav.scrolled {
 }
 
 
-/* ════════════════════════════════════════
-   CATEGORY GRID
-════════════════════════════════════════ */
+
 .categories-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
@@ -712,9 +691,7 @@ nav.scrolled {
 }
 
 
-/* ════════════════════════════════════════
-   FOOTER
-════════════════════════════════════════ */
+
 footer {
   border-top: 1px solid rgba(255,255,255,0.06);
   padding: 48px var(--pad) 36px;
@@ -788,9 +765,7 @@ footer {
 }
 
 
-/* ════════════════════════════════════════
-   RESPONSIVE — TABLET  (≤ 960px)
-════════════════════════════════════════ */
+
 @media (max-width: 960px) {
   :root {
     --pad: 24px;
@@ -812,9 +787,7 @@ footer {
 }
 
 
-/* ════════════════════════════════════════
-   RESPONSIVE — MOBILE  (≤ 600px)
-════════════════════════════════════════ */
+
 @media (max-width: 600px) {
   :root {
     --pad: 16px;
@@ -823,15 +796,14 @@ footer {
     --card-h: 190px;
   }
 
-  /* Navbar */
+
   .search-box { display: none; }
   .btn-signup { display: none; }
   .avatar { width: 30px; height: 30px; }
 
-  /* Show search icon only */
   .mobile-search-icon { display: flex !important; }
 
-  /* Hero */
+ 
   .hero {
     height: 70vh;
     min-height: 480px;
@@ -849,23 +821,22 @@ footer {
   .btn-info { padding: 11px 16px; font-size: 14px; }
   .hero-dots { left: var(--pad); bottom: 24px; }
 
-  /* Genre */
   .genre-strip { padding: 18px var(--pad) 14px; gap: 8px; }
   .genre-pill { padding: 6px 14px; font-size: 12px; }
 
-  /* Section */
+
   .section { padding: 6px 0 28px; }
   .section-header { padding: 0 var(--pad); margin-bottom: 12px; }
   .section-title { font-size: 20px; }
 
-  /* Row */
+ 
   .row { padding: 6px var(--pad) 10px; gap: 10px; }
   .row-arrow { display: none !important; }
 
-  /* Wide card */
+ 
   .card.wide { --card-w: 200px; --card-h: 116px; }
 
-  /* Featured banner */
+  
   .featured-banner {
     margin: 0 var(--pad) 28px;
     height: 170px;
@@ -876,7 +847,7 @@ footer {
   .featured-banner-text p { display: none; }
   .fb-label { font-size: 9px; }
 
-  /* Categories */
+
   .categories-grid {
     grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
     gap: 10px;
@@ -885,7 +856,6 @@ footer {
   .cat-card { height: 78px; }
   .cat-card-overlay { font-size: 17px; }
 
-  /* Footer */
   footer { padding: 36px var(--pad) 28px; }
   .footer-top { flex-direction: column; align-items: flex-start; gap: 14px; }
   .footer-social { margin-left: 0; }

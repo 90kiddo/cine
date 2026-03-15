@@ -1,8 +1,6 @@
 'use strict';
 
-/* ==============================================
-   DATA
-=============================================== */
+
 
 const movies = [
   { title:"Ember Falls",    year:"2024", genre:"Drama",    rating:"8.4", badge:"NEW", img:"https://images.pexels.com/photos/1292115/pexels-photo-1292115.jpeg?auto=compress&cs=tinysrgb&w=400&h=600&fit=crop" },
@@ -55,9 +53,7 @@ const heroData = [
 ];
 
 
-/* ==============================================
-   HELPERS
-=============================================== */
+
 const qs = (sel, ctx) => (ctx || document).querySelector(sel);
 const qa = (sel, ctx) => [...(ctx || document).querySelectorAll(sel)];
 
@@ -71,9 +67,7 @@ function shuffle(arr) {
 }
 
 
-/* ==============================================
-   CARD BUILDERS
-=============================================== */
+
 function makeCard(m) {
   return `
     <div class="card">
@@ -120,9 +114,7 @@ function makeCatCard(c) {
 }
 
 
-/* ==============================================
-   RENDER ALL ROWS
-=============================================== */
+
 function renderRows() {
   qs('#row-trending').innerHTML = shuffle(movies).map(makeCard).join('');
   qs('#row-new').innerHTML      = shuffle(movies).map(makeCard).join('');
@@ -135,25 +127,17 @@ function renderRows() {
 
 
 
-/* ==============================================
-   ROW AUTO-SCROLL  — one card at a time
-   
-   Strategy: every `intervalMs` milliseconds,
-   call scrollBy() with exactly one card-width.
-   CSS scroll-behavior:smooth on the .row handles
-   the animation. On reaching the last card, we
-   smooth-scroll back to 0.
-=============================================== */
+
 
 /**
- * @param {HTMLElement} rowEl      - the .row element
- * @param {number}      intervalMs - milliseconds between each card advance
+ * @param {HTMLElement} rowEl   
+ * @param {number}      intervalMs -
  */
 function initRowAutoScroll(rowEl, intervalMs) {
   let paused = false;
   let timer  = null;
 
-  // Calculate the pixel distance of one card + its gap
+
   function oneCardWidth() {
     const card = rowEl.querySelector('.card');
     if (!card) return 188;
@@ -169,7 +153,7 @@ function initRowAutoScroll(rowEl, intervalMs) {
     const maxScroll = rowEl.scrollWidth - rowEl.clientWidth;
 
     if (rowEl.scrollLeft >= maxScroll - step * 0.6) {
-      // Near the end — loop back to start smoothly
+     
       rowEl.scrollTo({ left: 0, behavior: 'smooth' });
     } else {
       rowEl.scrollBy({ left: step, behavior: 'smooth' });
@@ -181,18 +165,18 @@ function initRowAutoScroll(rowEl, intervalMs) {
 
   start();
 
-  // Pause while hovered so user can browse
+
   rowEl.addEventListener('mouseenter', () => { paused = true;  stop();  });
   rowEl.addEventListener('mouseleave', () => { paused = false; start(); });
 
-  // Pause on touch, resume 1.5 s after finger lifts
+ 
   rowEl.addEventListener('touchstart', () => { paused = true;  stop();  }, { passive: true });
   rowEl.addEventListener('touchend',   () => {
     paused = false;
     setTimeout(start, 1500);
   }, { passive: true });
 
-  // Also pause while hovering the arrow buttons
+
   const wrapper = rowEl.closest('.row-wrapper');
   if (wrapper) {
     wrapper.querySelectorAll('.row-arrow').forEach(btn => {
@@ -203,7 +187,7 @@ function initRowAutoScroll(rowEl, intervalMs) {
 }
 
 function initAllRowAutoScrolls() {
-  // Each row starts at a different offset so they don't all tick together
+ 
   const configs = [
     { id: 'row-trending', delay:    0, interval: 1800 },
     { id: 'row-new',      delay:  650, interval: 2000 },
@@ -219,9 +203,7 @@ function initAllRowAutoScrolls() {
 }
 
 
-/* ==============================================
-   MANUAL ARROW BUTTON SCROLL
-=============================================== */
+
 function scrollRow(btn, dir) {
   const row  = btn.closest('.row-wrapper').querySelector('.row');
   const card = row.querySelector('.card');
@@ -235,9 +217,7 @@ function scrollRow(btn, dir) {
 window.scrollRow = scrollRow;
 
 
-/* ==============================================
-   NAVBAR SCROLL EFFECT
-=============================================== */
+
 function initNavbar() {
   const nav = qs('#navbar');
   if (!nav) return;
@@ -247,9 +227,7 @@ function initNavbar() {
 }
 
 
-/* ==============================================
-   MOBILE MENU
-=============================================== */
+
 function initMobileMenu() {
   const hamburger  = qs('#hamburger');
   const mobileMenu = qs('#mobileMenu');
@@ -277,9 +255,7 @@ function initMobileMenu() {
 }
 
 
-/* ==============================================
-   GENRE PILLS
-=============================================== */
+
 function setGenre(el) {
   qa('.genre-pill').forEach(p => p.classList.remove('active'));
   el.classList.add('active');
@@ -287,9 +263,7 @@ function setGenre(el) {
 window.setGenre = setGenre;
 
 
-/* ==============================================
-   SECTION REVEAL (Intersection Observer)
-=============================================== */
+
 function initReveal() {
   const obs = new IntersectionObserver(entries => {
     entries.forEach(e => {
@@ -303,13 +277,11 @@ function initReveal() {
 }
 
 
-/* ==============================================
-   INIT — run everything after DOM is ready
-=============================================== */
+
 document.addEventListener('DOMContentLoaded', () => {
-  renderRows();          // build all card rows
-  initNavbar();          // scroll-aware navbar
-  initMobileMenu();      // hamburger menu
-  initReveal();          // fade-in on scroll
-  initAllRowAutoScrolls(); // one-card-at-a-time row scroll
+  renderRows();         
+  initNavbar();        
+  initMobileMenu();     
+  initReveal();        
+  initAllRowAutoScrolls();
 });
